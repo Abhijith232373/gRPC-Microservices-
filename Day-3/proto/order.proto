@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package order;
+
+// This tells the compiler where to put the generated Go files
+option go_package = "my-microservices/proto/order";
+
+service OrderService {
+    // FIX: 'returns' must be plural, and 'Request' was misspelled
+    rpc CreateOrder(CreateOrderRequest) returns (OrderResponse);
+}
+
+// FIX: Added 'e' to Request
+message CreateOrderRequest {
+    string user_id = 1;
+    string item = 2; // Optional: Added an item field for logic
+}
+
+// FIX: You must define the Response message if you use it in the RPC
+message OrderResponse {
+    string order_id = 1;
+    string status = 2;
+}

@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package user;
+
+// Recommended: use the full module path for easier Go imports
+option go_package = "my-microservices/proto/user";
+
+service UserService {
+    // FIX: 'returns' must be plural, and 'Request' was missing the 'e'
+    rpc ValidateUser (ValidateRequest) returns (ValidateResponse);
+}
+
+// FIX: Spelling corrected to 'Request'
+message ValidateRequest { 
+    string user_id = 1; 
+}
+
+message ValidateResponse {
+    bool is_valid = 1;
+}
